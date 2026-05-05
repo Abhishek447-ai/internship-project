@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Bookstore</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 400px;
+            background: white;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .book {
+            border-bottom: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .actions button {
+            width: auto;
+            margin-right: 5px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Login</h2>
+<input id="username" placeholder="Username">
+<input id="password" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+
+<hr>
+
+<h2>Add / Update Book</h2>
+<input id="name" placeholder="Book Name">
+<input id="author" placeholder="Author">
+<input id="price" placeholder="Price">
+<button onclick="addBook()">Save Book</button>
+
+<hr>
+
+<h2>Books</h2>
+<button onclick="getBooks()">Load Books</button>
+
+<div id="booksList"></div>
+
+</div>
+
+<script>
+
+let token = "";
+let currentBookId = null;
+
+// 🔐 LOGIN
+function login() {
+    fetch("http://127.0.0.1:8080/auth/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        token = data.token;
+        alert("Login Success ✅");
+    })
+    .catch(err => console.error(err));
+}
+
+// ➕ ADD / UPDATE BOOK
+function addBook() {
+
+    const book = {
+        name: document.getElementById("name").value,
+        author: document.getElementById("author").value,
+        price: parseInt(document.getElementById("price").value)
+    };
+
+    // 🔥 UPDATE
+    if (currentBookId) {
+        fetch(`http://127.0.0.1:8080/books/${currentBookId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify(book)
+        })
+        .then(res => res.json())
+        .then(() => {
+            alert("Updated ✅");
+            currentBookId = null;
+            clearForm();
+            getBooks();
+        });
+
+    } else {
+        // 🔥 ADD
+        fetch("http://127.0.0.1:8080/books", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            },
+            body: JSON.stringify(book)
+        })
+        .then(res => res.json())
+        .then(() => {
+            alert("Added ✅");
+            clearForm();
+            getBooks();
+        });
+    }
+}
+
+// 📖 GET BOOKS
+function getBooks() {
+    fetch("http://127.0.0.1:8080/books", {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        let output = "";
+
+        data.forEach(book => {
+            output += `
+                <div class="book">
+                    <b>${book.name}</b> - ${book.author} (₹${book.price})
+                    <div class="actions">
+                        <button onclick="editBook(${book.id}, '${book.name}', '${book.author}', ${book.price})">Edit</button>
+                        <button onclick="deleteBook(${book.id})">Delete</button>
+                    </div>
+                </div>
+            `;
+        });
+
+        document.getElementById("booksList").innerHTML = output;
+    });
+}
+
+// ✏️ EDIT
+function editBook(id, name, author, price) {
+    document.getElementById("name").value = name;
+    document.getElementById("author").value = author;
+    document.getElementById("price").value = price;
+
+    currentBookId = id;
+}
+
+// ❌ DELETE
+function deleteBook(id) {
+    fetch(`http://127.0.0.1:8080/books/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
+    .then(() => {
+        alert("Deleted ❌");
+        getBooks();
+    });
+}
+
+// 🧹 CLEAR FORM
+function clearForm() {
+    document.getElementById("name").value = "";
+    document.getElementById("author").value = "";
+    document.getElementById("price").value = "";
+}
+
+</script>
+
+</body>
+</html>
