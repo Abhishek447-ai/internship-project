@@ -19,7 +19,7 @@ export default function BookCard({ book }) {
 
   const handleAdd = () => {
     addToCart(book);
-    setOpen(true); // 🔥 show alert
+    setOpen(true); 
   };
 
   return (
