@@ -61,7 +61,7 @@ export default function BookCard({ book }) {
         </CardContent>
       </Card>
 
-      {/* 🔥 SNACKBAR ALERT */}
+      
       <Snackbar
         open={open}
         autoHideDuration={2000}
