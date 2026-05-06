@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
 function Navbar() {
-  const { cart } = useContext(CartContext); // ✅ THIS LINE FIXES YOUR ERROR
+  const { cart } = useContext(CartContext); 
   
 
   return (
@@ -35,7 +35,7 @@ function Navbar() {
           Cart
         </Button>
 
-        {/* CART ICON */}
+        
         <Box sx={{ position: "relative", ml: 2 }}>
           <span
             style={{
