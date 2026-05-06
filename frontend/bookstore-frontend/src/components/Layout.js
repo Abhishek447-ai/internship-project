@@ -16,13 +16,13 @@ function Layout({ children }) {
   return (
     <Box sx={{ display: "flex" }}>
       
-      {/* SIDEBAR */}
+      
       <Sidebar />
 
-      {/* RIGHT SIDE */}
+      
       <Box sx={{ flexGrow: 1 }}>
 
-        {/* TOP NAVBAR */}
+        
         <AppBar position="static" sx={{ background: "#0f4c5c" }}>
           <Toolbar>
             <Typography sx={{ flexGrow: 1 }}>
@@ -35,7 +35,7 @@ function Layout({ children }) {
           </Toolbar>
         </AppBar>
 
-        {/* MAIN CONTENT */}
+        
         <Box sx={{ p: 3, background: "#f4f6f8", minHeight: "100vh" }}>
           {children}
         </Box>
