@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
-    // SEARCH
+    
     List<Book> findByNameContainingIgnoreCase(String name);
 
-    // 🔥 FILTER BY PRICE
+    
     List<Book> findByPriceBetween(Double minPrice, Double maxPrice);
 }
