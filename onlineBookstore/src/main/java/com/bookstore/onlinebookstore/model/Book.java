@@ -23,17 +23,17 @@ public class Book {
     @Positive(message = "Price must be greater than 0")
     private Double price;
 
-    // ✅ Default constructor
+    
     public Book() {}
 
-    // ✅ Parameterized constructor
+    
     public Book(String name, String author, Double price) {
         this.name = name;
         this.author = author;
         this.price = price;
     }
 
-    // ✅ GETTERS & SETTERS
+
 
     public Integer getId() {
         return id;
