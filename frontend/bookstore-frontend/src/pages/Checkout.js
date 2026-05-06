@@ -30,7 +30,7 @@ export default function Checkout() {
 
     alert("✅ Order placed successfully!");
 
-    setCart([]); // 🔥 clear cart
+    setCart([]);
   };
 
   return (
@@ -39,7 +39,7 @@ export default function Checkout() {
         Checkout & Payment
       </Typography>
 
-      {/* CART ITEMS */}
+      
       {cart.map((item, index) => (
         <Card key={index} sx={{ mb: 2, p: 2 }}>
           <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -58,7 +58,7 @@ export default function Checkout() {
 
       <Typography variant="h5">Total: ₹{total}</Typography>
 
-      {/* USER DETAILS */}
+      
       <Card sx={{ mt: 3, p: 3 }}>
         <Typography variant="h6">Shipping Details</Typography>
 
@@ -87,7 +87,7 @@ export default function Checkout() {
         />
       </Card>
 
-      {/* PAYMENT OPTIONS */}
+      
       <Card sx={{ mt: 3, p: 3 }}>
         <Typography variant="h6">Payment Method</Typography>
 
@@ -101,7 +101,7 @@ export default function Checkout() {
         </RadioGroup>
       </Card>
 
-      {/* PLACE ORDER */}
+      
       <Button
         variant="contained"
         sx={{ mt: 3 }}
