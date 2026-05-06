@@ -22,7 +22,7 @@ export default function BookDetails() {
 
   const handleAdd = () => {
     addToCart(book);
-    setOpen(true); // 🔥 show alert
+    setOpen(true); 
   };
 
   return (
@@ -49,7 +49,7 @@ export default function BookDetails() {
         Add to Cart
       </Button>
 
-      {/* 🔥 SNACKBAR */}
+      
       <Snackbar
         open={open}
         autoHideDuration={2000}
