@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const { cart, removeFromCart } = useContext(CartContext);
-  const navigate = useNavigate(); // ✅ IMPORTANT
+  const navigate = useNavigate();
 
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
@@ -25,7 +25,7 @@ export default function Cart() {
         <Typography>No items in cart</Typography>
       ) : (
         <>
-          {/* CART ITEMS */}
+          
           {cart.map((item, index) => (
             <Card
               key={index}
@@ -70,7 +70,7 @@ export default function Cart() {
             </Card>
           ))}
 
-          {/* TOTAL + CHECKOUT */}
+          
           <Card sx={{ mt: 3, p: 2, borderRadius: 2 }}>
             <Typography variant="h5">
               Total: ₹{total}
@@ -79,7 +79,7 @@ export default function Cart() {
             <Button
               variant="contained"
               sx={{ mt: 2 }}
-              onClick={() => navigate("/checkout")} // ✅ WORKING NAVIGATION
+              onClick={() => navigate("/checkout")} 
             >
               PROCEED TO CHECKOUT
             </Button>
