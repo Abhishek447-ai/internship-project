@@ -31,7 +31,7 @@ export default function Book() {
     loadBooks();
   }, []);
 
-  // ✅ ADD BOOK
+  
   const addBook = () => {
     fetch("http://127.0.0.1:8080/books", {
       method: "POST",
@@ -49,14 +49,14 @@ export default function Book() {
     });
   };
 
-  // ✅ DELETE BOOK
+
   const deleteBook = (id) => {
     fetch(`http://127.0.0.1:8080/books/${id}`, {
       method: "DELETE"
     }).then(() => loadBooks());
   };
 
-  // ✅ START EDIT
+  
   const startEdit = (book) => {
     setEditId(book.id);
     setName(book.name);
@@ -64,7 +64,7 @@ export default function Book() {
     setPrice(book.price);
   };
 
-  // ✅ UPDATE BOOK
+  
   const updateBook = () => {
     fetch(`http://127.0.0.1:8080/books/${editId}`, {
       method: "PUT",
@@ -82,7 +82,7 @@ export default function Book() {
     });
   };
 
-  // ✅ CLEAR FORM
+  
   const clearForm = () => {
     setName("");
     setAuthor("");
@@ -96,7 +96,7 @@ export default function Book() {
         Books
       </Typography>
 
-      {/* FORM */}
+      
       <Paper sx={{ p: 3, mb: 3 }}>
         <Typography variant="h6" mb={2}>
           {editId ? "Edit Book" : "Add Book"}
@@ -140,7 +140,7 @@ export default function Book() {
         </Box>
       </Paper>
 
-      {/* TABLE */}
+      
       <Paper>
         <Table>
           <TableHead>

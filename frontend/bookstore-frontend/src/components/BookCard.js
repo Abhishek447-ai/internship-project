@@ -19,7 +19,7 @@ export default function BookCard({ book }) {
 
   const handleAdd = () => {
     addToCart(book);
-    setOpen(true); // 🔥 show alert
+    setOpen(true); 
   };
 
   return (
@@ -61,7 +61,7 @@ export default function BookCard({ book }) {
         </CardContent>
       </Card>
 
-      {/* 🔥 SNACKBAR ALERT */}
+      
       <Snackbar
         open={open}
         autoHideDuration={2000}

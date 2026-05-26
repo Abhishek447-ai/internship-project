@@ -84,7 +84,7 @@
 let token = "";
 let currentBookId = null;
 
-// 🔐 LOGIN
+
 function login() {
     fetch("http://127.0.0.1:8080/auth/login", {
         method: "POST",
@@ -104,7 +104,7 @@ function login() {
     .catch(err => console.error(err));
 }
 
-// ➕ ADD / UPDATE BOOK
+
 function addBook() {
 
     const book = {
@@ -113,7 +113,7 @@ function addBook() {
         price: parseInt(document.getElementById("price").value)
     };
 
-    // 🔥 UPDATE
+    
     if (currentBookId) {
         fetch(`http://127.0.0.1:8080/books/${currentBookId}`, {
             method: "PUT",
@@ -132,7 +132,7 @@ function addBook() {
         });
 
     } else {
-        // 🔥 ADD
+        
         fetch("http://127.0.0.1:8080/books", {
             method: "POST",
             headers: {
@@ -150,7 +150,7 @@ function addBook() {
     }
 }
 
-// 📖 GET BOOKS
+
 function getBooks() {
     fetch("http://127.0.0.1:8080/books", {
         headers: {
@@ -178,7 +178,7 @@ function getBooks() {
     });
 }
 
-// ✏️ EDIT
+
 function editBook(id, name, author, price) {
     document.getElementById("name").value = name;
     document.getElementById("author").value = author;
@@ -187,7 +187,7 @@ function editBook(id, name, author, price) {
     currentBookId = id;
 }
 
-// ❌ DELETE
+
 function deleteBook(id) {
     fetch(`http://127.0.0.1:8080/books/${id}`, {
         method: "DELETE",
@@ -201,7 +201,7 @@ function deleteBook(id) {
     });
 }
 
-// 🧹 CLEAR FORM
+
 function clearForm() {
     document.getElementById("name").value = "";
     document.getElementById("author").value = "";

@@ -19,7 +19,7 @@ public class JwtFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-        // 🔥 For now just pass request (we add JWT logic later)
+        
         filterChain.doFilter(request, response);
     }
 }

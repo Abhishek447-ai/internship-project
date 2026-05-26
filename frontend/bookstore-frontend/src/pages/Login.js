@@ -23,7 +23,7 @@ export default function Login() {
         body: JSON.stringify({ username, password })
       });
 
-      // 👇 IMPORTANT: handle both JSON and string response
+      
       let data;
       try {
         data = await res.json();
@@ -41,10 +41,10 @@ export default function Login() {
         return;
       }
 
-      // ✅ SAVE TOKEN
+      
       sessionStorage.setItem("token", token);
 
-      // ✅ FORCE REDIRECT
+      
       window.location.href = "/home";
 
     } catch (err) {
@@ -61,7 +61,7 @@ export default function Login() {
         justifyContent: "center",
         alignItems: "center",
 
-        // ✅ WORKING IMAGE LINK
+        
         backgroundImage:
           "url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f')",
         backgroundSize: "cover",
@@ -69,7 +69,7 @@ export default function Login() {
         position: "relative"
       }}
     >
-      {/* DARK OVERLAY */}
+      
       <Box
         sx={{
           position: "absolute",
@@ -79,7 +79,7 @@ export default function Login() {
         }}
       />
 
-      {/* LOGIN CARD */}
+      
       <Card
         sx={{
           p: 4,

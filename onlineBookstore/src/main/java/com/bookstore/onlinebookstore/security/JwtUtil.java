@@ -11,24 +11,24 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private final String SECRET = "mysecretkeymysecretkeymysecretkey"; // must be long
+    private final String SECRET = "mysecretkeymysecretkeymysecretkey"; 
 
-    // ✅ GENERATE TOKEN (THIS WAS MISSING)
+    
     public String generateToken(String username) {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1 hour
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) 
                 .signWith(Keys.hmacShaKeyFor(SECRET.getBytes()), SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    // ✅ EXTRACT USERNAME
+    
     public String extractUsername(String token) {
         return extractClaims(token).getSubject();
     }
 
-    // ✅ VALIDATE TOKEN
+    
     public boolean isTokenValid(String token) {
         try {
             extractClaims(token);

@@ -22,13 +22,13 @@ public class BookController {
         this.service = service;
     }
 
-    // 🔥 SEARCH
+    
     @GetMapping("/search")
     public List<Book> searchBooks(@RequestParam String name) {
         return service.searchBooks(name);
     }
 
-    // 🔥 FILTER
+    
     @GetMapping("/filter")
     public List<Book> filterBooks(
             @RequestParam Double minPrice,
@@ -36,25 +36,25 @@ public class BookController {
         return service.filterByPrice(minPrice, maxPrice);
     }
 
-    // 🔥 PAGINATION
+    
     @GetMapping("/page")
     public Page<Book> getBooks(Pageable pageable) {
         return service.getBooks(pageable);
     }
 
-    // ✅ GET ALL
+    
     @GetMapping
     public List<Book> getBooks() {
         return service.getAllBooks();
     }
 
-    // ✅ GET BY ID
+    
     @GetMapping("/{id}")
     public Book getBookById(@PathVariable Integer id) {
         return service.getBookById(id);
     }
 
-    // ✅ ADD BOOK (THIS WAS MISSING)
+    
     @PostMapping
     public Book addBook(@RequestBody @Valid BookDTO dto) {
 
@@ -66,14 +66,14 @@ public class BookController {
         return service.addBook(book);
     }
 
-    // ✅ UPDATE BOOK
+    
     @PutMapping("/{id}")
     public Book updateBook(@PathVariable Integer id, @RequestBody Book newBook) {
         return service.updateBook(id, newBook);
     }
 
 
-    // ✅ DELETE BOOK
+    
     @DeleteMapping("/{id}")
     public String deleteBook(@PathVariable Integer id) {
         service.deleteBook(id);

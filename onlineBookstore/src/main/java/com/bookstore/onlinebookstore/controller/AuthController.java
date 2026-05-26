@@ -48,7 +48,7 @@ public class AuthController {
         User existingUser = userRepository.findByUsername(user.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // ✅ CORRECT PASSWORD CHECK
+        
         if (!passwordEncoder.matches(user.getPassword(), existingUser.getPassword())) {
             throw new RuntimeException("Invalid password");
         }

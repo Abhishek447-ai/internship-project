@@ -13,13 +13,13 @@ function Sidebar() {
         color: "white",
       }}
     >
-      {/* PROFILE */}
+      
       <Box sx={{ p: 3, textAlign: "center" }}>
         <Typography variant="h6">Welcome</Typography>
         <Typography>Admin</Typography>
       </Box>
 
-      {/* MENU */}
+      
       <List>
   <ListItem button onClick={() => navigate("/dashboard")}>
     <ListItemText primary="Home" />
