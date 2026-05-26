@@ -17,10 +17,12 @@ function App() {
         {token && <Navbar />}
 
         <Routes>
+
           <Route
-            path="/"
-            element={!token ? <Login /> : <Navigate to="/home" replace />}
+            path="/book/:id"
+            element={token ? <BookDetails /> : <Navigate to="/" replace />}
           />
+          
 
           <Route
             path="/home"
@@ -36,9 +38,11 @@ function App() {
             element={token ? <Cart /> : <Navigate to="/" replace />}
           />
 
+          
+
           <Route
-            path="/book/:id"
-            element={token ? <BookDetails /> : <Navigate to="/" replace />}
+            path="/"
+            element={!token ? <Login /> : <Navigate to="/home" replace />}
           />
         </Routes>
       </BrowserRouter>
